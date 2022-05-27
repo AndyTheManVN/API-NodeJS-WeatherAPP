@@ -14,11 +14,17 @@ app.get('/', function(req, res){
         response.on("data", function(data){
           const weatherData = JSON.parse(data);
           const temp = weatherData.main.temp;
-          console.log(temp);
+          const type = weatherData.weather[0].main;
+
+          // Xuất dữ liệu ra route /
+          res.write("<h1>Temperature: " + temp + "C</h1><br>");
+          res.write("<h2>Weather: " + type + "</h2>");
+          res.send();
+
         });
   });
 
-  res.sendFile(__dirname + "/index.html");
+  // res.sendFile(__dirname + "/index.html");
 });
 
 app.listen(port, function(){
