@@ -15,10 +15,13 @@ app.get('/', function(req, res){
           const weatherData = JSON.parse(data);
           const temp = weatherData.main.temp;
           const type = weatherData.weather[0].main;
+          const icon = weatherData.weather[0].icon;
+          const iconURL = "http://openweathermap.org/img/wn/"+ icon + ".png"
 
           // Xuất dữ liệu ra route /
           res.write("<h1>Temperature: " + temp + "C</h1><br>");
           res.write("<h2>Weather: " + type + "</h2>");
+          res.write("<img src='"+ iconURL + "''>")
           res.send();
 
         });
